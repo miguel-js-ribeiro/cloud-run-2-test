@@ -3,3 +3,6 @@ steps:
   args: ['build', '-t', 'gcr.io/msr-cloud-run-test-2-project/github.com/miguel-js-ribeiro/cloud-run-2-test:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/msr-cloud-run-test-2-project/github.com/miguel-js-ribeiro/cloud-run-2-test:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'cloud-run-test-2', '--project=msr-cloud-run-test-2-project', '--region=europe-west4-a', '--platform=managed', '--image=gcr.io/msr-cloud-run-test-2-project/github.com/miguel-js-ribeiro/cloud-run-2-test:$SHORT_SHA']
+
